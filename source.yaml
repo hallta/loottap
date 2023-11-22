@@ -1,0 +1,5 @@
+---
+sites:
+  - url: https://washingtonasa.proboards.com/board/30/players-looking-teams
+    title: span.*class="link target".*\<a href.*?thread-link.*?\>(.*?)</a>
+    link: span.*class="link target".*\<a href="(.*?)".*
