@@ -20,7 +20,6 @@ cur = con.cursor()
 pp = pprint.PrettyPrinter(indent=4)
 
 def load_config(cfg):
-
     with open(cfg, "r") as stream:
         try:
             return yaml.safe_load(stream)
@@ -38,7 +37,6 @@ def get_html_from_url(url):
 
 
 def process_urls(url_list):
-
     for url_obj in url_list['sites']:
         url = url_obj['url']
         html = get_html_from_url(url)
@@ -47,13 +45,13 @@ def process_urls(url_list):
         titles = re.findall(title_re, html)
         links = list(map(lambda u: url + u, re.findall(link_re, html)))
 
-        ## should have the same number of titles and links. if not, 
+        ## should have the same number of titles and links. if not,
         #  then we wont be able to match everything so something
         #  is afoot
         if len(links) != len(titles):
             raise Exception("Something is afoot len(links) != len(url); ")
 
-    return dict(zip(links, titles))    
+    return dict(zip(links, titles))
 
 
 def is_known_url(url):
