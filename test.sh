@@ -1,0 +1,1 @@
+echo $GMAIL_PASS 
