@@ -59,8 +59,8 @@ def is_known_url(url):
     return len(rows) > 0
 
 
-def remember_url(url):
-    cur.execute('insert into urls values(?)', [url])
+def remember_url(url, raw):
+    cur.execute('insert into urls values(?,?)', [url, raw])
     con.commit()
 
 
@@ -73,7 +73,7 @@ def distribute_changes(urls):
         if is_known_url(url):
             continue
         else:
-            remember_url(url)
+            remember_url(url, u)
             new_urls.append(u)
 
     for u in new_urls:
@@ -81,7 +81,7 @@ def distribute_changes(urls):
 
 
 def init_db():
-    cur.execute("create table if not exists urls(url)")
+    cur.execute("create table if not exists urls(url, raw)")
 
 def main():
     config = load_config("source.yaml")
